@@ -150,9 +150,9 @@ function repeatString(value, count) {
  *   'ABABAB','BA' => 'ABAB'
  */
 function removeFirstOccurrences(str, value) {
-  str = str.split(' ');
-  str = str.filter(items => items !== value)
-  return str.join(' ')
+  let ind = str.indexOf(value);
+  str = str.substring(0,ind) + str.substring(ind+value.length);
+  return str;
   // throw new Error('Not implemented');
 }
 
@@ -282,13 +282,29 @@ function getRectangleString(width, height) {
  */
 function encodeToRot13(str) {
   str = str.split('');
-  str = str.map(item => (item.charCodeAt(0) > 64 && item.charCodeAt(0) < 91) ||
-                        (item.charCodeAt(0) > 96 && item.charCodeAt(0) < 123) 
-                        ? (item.charCodeAt(0) < 111 ? items = item.charCodeAt(0) + 13 : items = item.charCodeAt(0) - 13)
-                        : item.charCodeAt(0));
+  str = str.map(item => item = item.charCodeAt(0) )
+    
+  for (let i = 0, n = str.length; i < n; i++) {
+    if (64 < str[i] && str[i] < 91) {
+      if (str[i] < 78) {
+        str[i] = str[i] + 13
+      }
+      else {
+        str[i] = str[i]- 13
+      }
+    }
+    else if (96 < str[i] && str[i] < 123) {
+      if (str[i] < 110) {
+        str[i] = str[i] + 13
+      }
+      else {
+        str[i] = str[i] - 13
+      }
+    }
+  }
   str = str.map(item => String.fromCharCode(item)); 
   return str.join('');
-  throw new Error('Not implemented');
+  // throw new Error('Not implemented');
 }
 
 /**
@@ -305,19 +321,21 @@ function encodeToRot13(str) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-  console.log(typeof(value));
-  
+  let tmp;
   if (typeof(value) === 'object') {
-    console.log(Object.keys(value))
-    
+    for (let key in value) {
+      tmp = tmp + key;
+    }
   }
-  let tmp = value;
-  console.log('tmp',tmp)
-  console.log(typeof(tmp))
-  if (typeof(tmp) === 'string') { return true} 
-  else {return false};
-  throw new Error('Not implemented');
-  throw new Error('Not implemented');
+  if (typeof(tmp) === 'string') {
+    return true;
+  }
+  if (typeof(value) === 'string') {
+    return true;
+  }
+  else {
+    return false;
+  }  
 }
 
 
@@ -346,7 +364,13 @@ function isString(value) {
  *   'K♠' => 51
  */
 function getCardId(value) {
-    throw new Error('Not implemented');
+  let deck = ['A♣','2♣','3♣','4♣','5♣','6♣','7♣','8♣','9♣','10♣','J♣','Q♣','K♣',
+              'A♦','2♦','3♦','4♦','5♦','6♦','7♦','8♦','9♦','10♦','J♦','Q♦','K♦',
+              'A♥','2♥','3♥','4♥','5♥','6♥','7♥','8♥','9♥','10♥','J♥','Q♥','K♥',
+              'A♠','2♠','3♠','4♠','5♠','6♠','7♠','8♠','9♠','10♠','J♠','Q♠','K♠'
+             ]
+  return deck.indexOf(value);
+    // throw new Error('Not implemented');
 }
 
 
