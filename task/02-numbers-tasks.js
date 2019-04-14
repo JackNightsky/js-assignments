@@ -110,19 +110,9 @@ function getLinearEquationRoot(a, b) {
  *   (0,1) (0,1)     => 0
  *   (0,1) (1,2)     => 0
  */
-// function getAngleBetweenVectors(x1, y1, x2, y2) {
-//   let cos = (x1 * x2 + y1 * y2) / ( Math.sqrt((x1*x1) + (y1*y1)) * Math.sqrt((x2*x2) + (y2*y2)) );
-//   return cos * Math.PI / 180;
-// }
-
 function getAngleBetweenVectors(x1, y1, x2, y2) {
-  if (x1 === x2 && y1 === y2) return 0;
-  if ( (x1 === y2 && Math.abs(y1) === x2 ) || 
-       (x1 === y2 && y1 === Math.abs(x2) )) return Math.PI / 2;
-  if (x1 === x2 && y1 !== y2 && Math.abs(y1) === Math.abs(y2)) return Math.PI;
-  if (x1 !== x2 && y1 !== y2) return 0;
-  let cos = (x1 * y1 + x2 * y2) / ( Math.sqrt((x1*x1) + (y1*y1)) * Math.sqrt((x2*x2) + (y2*y2)) );
-  return Math.PI * cos / 180;
+  let cos = (x1 * x2 + y1 * y2) / ( Math.sqrt((x1*x1) + (y1*y1)) * Math.sqrt((x2*x2) + (y2*y2)) );
+  return Math.acos(cos);
 }
 
 
