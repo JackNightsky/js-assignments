@@ -256,7 +256,7 @@ function getMovingSum(arr) {
  */
 function getSecondItems(arr) {
 
-   // throw new Error('Not implemented');
+   throw new Error('Not implemented');
 }
 
 
@@ -294,7 +294,12 @@ function propagateItemsByPositionIndex(arr) {
  *   [ 10, 10, 10, 10 ] => [ 10, 10, 10 ]
  */
 function get3TopItems(arr) {
-   throw new Error('Not implemented');
+   arr = arr.reverse();
+   if (arr.length > 3) {
+      arr = arr.slice(0,3);
+   }
+   return arr;
+   // throw new Error('Not implemented');
 }
  
  
