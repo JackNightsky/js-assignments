@@ -58,6 +58,7 @@ function generateOdds(len) {
  *    [] => [] 
  */
 function doubleArray(arr) {
+   return arr.concat(arr);
    throw new Error('Not implemented');
 }
 
